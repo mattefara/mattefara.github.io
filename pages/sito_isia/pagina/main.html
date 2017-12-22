@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <title>ISIA Urbino</title>
+		<meta charset="utf-8"/>
+		<link href="css/style.css" type="text/css" rel="stylesheet">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+		<div id="orizzontale">
+			<div id="internoOrizzontale">
+				<img id="logo" src="logo bianco.png" />
+				<h1 id="titolo">La pietra racconta. Un palazzo da leggere.</h1>
+			</div>
+		</div>
+		<div id="verticale">
+			<h1 id="data">29 marzo – 21 maggio 2017, Palazzo Ducale di Urbino</h1>	
+		</div>
+		<table>
+			<tr>
+				<td><img id="uno" src="immagini/50.png" /></td>
+				<td id="slogan">STUDIARE<br />
+				CONSERVARE<br />
+				MOSTRARE</td>
+				<td><img id="due" src="immagini/106.png" /></td>
+			</tr>
+			
+			<tr>
+				<td>
+					Alcune delle scritte sui muri del Palazzo Ducale sono note da tempo: ne parla anche Giorgio Batini nel suo libro L’Italia sui muri (1968).
+Solo a partire dagli Anni Novanta, tuttavia, Raffaella Sarti (Università di Urbino Carlo Bo) ha avviato una ricognizione sistematica di tale patrimonio, con un lavoro di schedatura, trascrizione e interpretazione presentato in varie pubblicazioni.
+Di recente, un lavoro di schedatura delle scritte e dei disegni con sofisticate tecniche fotografiche è stato avviato da Manuele Marraccini nella sua tesi di laurea in fotografia per i beni culturali (2015), svolta presso l’Istituto Superiore per le Industrie Artistiche (Isia) sotto la guida di Angelo Raffaele Rubino (Isia, relatore), Raffaella Sarti (Università di Urbino Carlo Bo, correlatrice) e Matteo Dellepiane (Isia, correlatore).</td>
+				<td><img id="tre" src="immagini/52.png" /></td>
+				<td>
+					A partire da tali lavori è nato il progetto “La pietra racconta. Un Palazzo da leggere“.
+Il progetto scaturisce da una convenzione tra la Galleria Nazionale delle Marche e l’Isia, con la direzione scientifica dell’Università di Urbino Carlo Bo. Esso mira a compiere una ricognizione completa delle scritte e dei disegni incisi sui muri del palazzo, a fotografarli e scansionarli, a renderli accessibili a un vasto pubblico di studiosi e di “curiosi” organizzando un percorso permanente dentro il palazzo, predisponendo un virtual tour e allestendo mostre che offrano ai visitatori un’interessante ed emozionate esperienza multimediale.</td>
+			</tr>
+			<tr>
+				<td><img id="quattro" src="immagini/63.png" /></td>
+				<td>
+La mostra offre ai visitatori la possibilità di compiere un sorprendente percorso alla scoperta del ricchissimo patrimonio di scritte e disegni tracciati sugli stipiti e gli architravi di porte e finestre, sulle colonne e sui muri del Palazzo. 
+					Scritte e disegni, che spaziano su un arco di cinque secoli e mezzo, sono in gran parte incisi con oggetti appuntiti, sono cioè graffiti; ma ce ne sono anche a carboncino, sanguigna, matita, biro. 
+					Le scritte sono in italiano, latino, francese, tedesco, spagnolo… .
+Ora sono rozze e incerte, ora sono opere di calligrafia.
+					Alcune recano solo un nome, a volte datato; altre raccontano eventi che vanno dalla vita quotidiana del Palazzo a notizie di politica internazionale; alcune ricordano amori o conflitti; altre esprimono sentenze e giudizi moraleggianti… Studiosi e semplici “curiosi” ne resteranno affascinati e sentiranno fortemente vicini gli uomini e le donne che, per secoli, si intestardirono a lasciare tracce delle loro vite sui muri
+</td>
+				<td><img id="cinque" src="immagini/111.png" /></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><img id="fondo" src="immagini/01.png" /></td></tr>
+				<td></td>
+		</table>
+    </body>
+	<script>
+	var vero=false;
+	$(window).keydown(function(event) {
+/*
+	Disabilita lo zoom della pagina
+*/
+	if ((event.keyCode == 107 && event.ctrlKey == true) || (event.keyCode == 109 && event.ctrlKey == true)) {
+		event.preventDefault();
+	}
+	$(window).bind('mousewheel DOMMouseScroll', function(event) {
+		if(event.ctrlKey == true) {
+			event.preventDefault();
+		}
+	});
+});
+	function calcolaTempo(){
+		return (Math.floor(Math.random() * 7) + 5)*1000;
+	}
+	array1=["immagini/50.png","immagini/88.png"];
+	array2=["immagini/106.png","immagini/103.png"];
+	array3=["immagini/52.png","immagini/57.png"];
+	array4=["immagini/63.png","immagini/90.png"];
+	array5=["immagini/111.png","immagini/87.png"];
+	var tempo=5000;
+	cambiaImmagine();
+	function cambiaImmagine() {
+		tempo=calcolaTempo();
+		vero=!vero;
+		if  (vero){
+			indice=0;
+		}
+		else{
+			indice=1;
+		}
+		document.getElementById("uno").src=array1[indice];
+		document.getElementById("due").src=array2[indice];
+		document.getElementById("tre").src=array3[indice];
+		document.getElementById("quattro").src=array4[indice];
+		document.getElementById("cinque").src=array5[indice];
+		setTimeout(cambiaImmagine,tempo);
+	}
+	</script>
+</html>
