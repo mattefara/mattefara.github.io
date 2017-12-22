@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Esempio</title>
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+		<script src="Libs/angular.min.js"></script>
+		<script src="Libs/angular-animate.min.js"></script>
+		<script src="Libs/angular-aria.min.js"></script>
+		<script src="Libs/angular-ui-router.min.js"></script>
+		<script src="Libs/angular-messages.min.js"></script>
+		<script src="Libs/angular-material.min.js"></script>
+		<script src="App/source.js"></script>
+		<link rel="stylesheet" href="Layouts/angular-material.min.css" type="text/css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	</head>
+	<body ng-app="myApp" layout="column">
+	
+		<!-- Titolo Applicazione -->
+		<md-toolbar class="md-hue-2">
+			<div class="md-toolbar-tools" ng-controller="ToolbarCtrl as toolbar">
+				<md-button class="md-icon-button" aria-label="Settings" ng-click="toolbar.refresh()">
+					<md-icon md-font-library="material-icons">refresh</md-icon>
+				</md-button>
+				<p md-truncate>Giocatori</p>
+			</div>
+		</md-toolbar>
+	
+		<!-- Corpo Applicazion -->
+		<md-content layout-gt-sm="row" flex>
+			
+			<!-- Dettaglio Giocatore -->
+			<md-card layout-padding flex layout="column" ng-controller="FormCtrl as myForm">
+				<form name="form1" layout="column" flex>
+
+					<label> nome della squadra:  {{myForm.nomeSquadra}}</label> 
+					<label> nome della citta: {{myForm.nomeCitta}}</label>
+					<md-input-container>
+						<label>Nome</label>
+						<input ng-model="myForm.Player.Nome"  ng-required="true" md-maxlength="30">
+					</md-input-container>
+					<md-input-container>
+						<label>Anno di nascita</label>
+						<md-datepicker ng-model="myForm.Player.AnnoDiNascita"></md-datepicker>
+
+				        <span ng-bind="ctrl.date1" style="display: block; margin-top: 5px;"></span>
+
+					</md-input-container>
+					
+					<md-input-container>
+						<label>numero maglia</label>
+						<input type="number" min="0" max="50" ng-model="myForm.Player.Maglia" ng-required="true">
+				        <span ng-bind="ctrl.date1" style="display: block; margin-top: 5px;"></span>
+						
+					</md-input-container>
+
+
+					
+					<div layout="row">
+						<md-button ng-click="myForm.newPlayer()" class="md-primary">Nuovo</md-button>
+						<span flex></span>
+						<md-button ng-disabled="!form1.$valid" class="md-warn" ng-click="myForm.savePlayer()">Salva</md-button>
+					</div>
+				</form>
+			</md-card>
+			
+			<!-- Lista Giocatori -->
+			<md-content layout="column" flex layout-padding ng-controller="ListsCtrl as myList">
+				
+				{{myList.listPlayer()}}
+				<md-list>
+					<md-list-item class="md-3-line" ng-repeat="player in myList.listPlayer()">
+						<div class="md-list-item-text" layout="column">
+							<h3>{{ player.Nome | capitalizeFirstLetter }} {{ player.Cognome | capitalizeFirstLetter }}</h3>
+							<h4 hide show-gt-sm>{{ player.Descrizione }}</h4>
+							<p ng-if="ListsCtrl.checkTypeRole(player.Ruolo)" >Esterno</p>
+							<p ng-if="!ListsCtrl.checkTypeRole(player.Ruolo)" >Interno</p>
+						  </div>
+					</md-list-item>
+				</md-list>
+			</md-content>
+			
+		</md-content>
+	</body>
+</html>
