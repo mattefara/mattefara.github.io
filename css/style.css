@@ -4,6 +4,8 @@
 }
 .immagini-in-pagina{
 	height:400px !important;
+	padding-top: 10px;
+	padding-bottom: 10px; 
 }
 .larghezza{
 	width: 95%;
@@ -21,7 +23,9 @@ body, html {
 	text-rendering: optimizeLegibility !important;
 	-webkit-font-smoothing: antialiased !important;
 	color: #333;
+	min-height: 100%;
 }
+
 h1 {
 }
 h1 strong {
@@ -78,9 +82,8 @@ a:hover, a:focus {
 	display: block;
 }
 ul, ol {
-	padding: 30px;
-	webkit-padding: 0;
-	moz-padding: 0;
+	padding-left: 30px;*/
+	padding: 0;
 	list-style: circle;
 	font-family: 'Open Sans', sans-serif;
 	color: #888;
@@ -139,7 +142,7 @@ hr {
 	background-color: #FFF;
 }
 .section-title {
-	padding-bottom: 50px;
+	padding-bottom: 40px;
 }
 /* Home Style */
 header {
@@ -441,10 +444,16 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 	color: #666;
 }
 /* Footer */
+
 #footer {
 	background-color: #222222;
 	color: #777;
-	padding: 15px 0 10px 0;
+	
+	position: fixed;
+bottom: 0;
+width: 100%;
+z-index: 300;
+
 }
 #footer p {
 	font-size: 13px;
