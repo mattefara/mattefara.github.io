@@ -39,23 +39,35 @@
 			<!-- Dettaglio Giocatore -->
 			<md-card layout-padding flex layout="column" ng-controller="FormCtrl as myForm">
 				<form name="form1" layout="column" flex>
-
-					<label> nome della squadra:  {{myForm.nomeSquadra}}</label> 
-					<label> nome della citta: {{myForm.nomeCitta}}</label>
 					<md-input-container>
 						<label>Nome</label>
-						<input ng-model="myForm.Player.Nome"  ng-required="true" md-maxlength="30">
-					</md-input-container>
-					<md-input-container>
-						<label>Anno di nascita</label>
-						<md-datepicker ng-model="myForm.Player.AnnoDiNascita"></md-datepicker>
-
-				        <span ng-bind="ctrl.date1" style="display: block; margin-top: 5px;"></span>
-
+						<input my-valid-name ng-model="myForm.Player.Nome"  ng-required="true" md-maxlength="30">
+						<div ng-messages="form1.Nome.$error">
+							<div ng-message="required">Campo Obbligatorio</div>
+							<div ng-message="md-maxlength">Nome Troppo Lungo</div>
+							<div ng-message="myvalidname">I caratteri numerici non sono accettati</div>
+						</div>
 					</md-input-container>
 					
 					<md-input-container>
-						<label>numero maglia</label>
+						<label>Cognome</label>
+						<input my-valid-name ng-model="myForm.Player.Cognome"  ng-required="true" md-maxlength="30">
+						<div ng-messages="form1.Cognome.$error">
+							<div ng-message="required">Campo Obbligatorio</div>
+							<div ng-message="md-maxlength">Nome Troppo Lungo</div>
+							<div ng-message="myvalidname">I caratteri numerici non sono accettati</div>
+						</div>
+					</md-input-container>
+
+					<md-input-container>
+						<label>Anno di nascita (1970-2017)</label>
+						<input type="number" min="1970" max="2017" ng-model="myForm.Player.AnnoDiNascita" ng-required="true">
+				        <span ng-bind="ctrl.date1" style="display: block; margin-top: 5px;"></span>
+						
+					</md-input-container>
+
+					<md-input-container>
+						<label>Numero maglia (0-50)</label>
 						<input type="number" min="0" max="50" ng-model="myForm.Player.Maglia" ng-required="true">
 				        <span ng-bind="ctrl.date1" style="display: block; margin-top: 5px;"></span>
 						
@@ -66,23 +78,30 @@
 					<div layout="row">
 						<md-button ng-click="myForm.newPlayer()" class="md-primary">Nuovo</md-button>
 						<span flex></span>
-						<md-button ng-disabled="!form1.$valid" class="md-warn" ng-click="myForm.savePlayer()">Salva</md-button>
+						<md-button ng-disabled="!form1.$valid" class="md-warn" ng-click="myForm.savePlayer()">Salva Giocatore</md-button>
+						<span flex></span>
+						<md-button ng-disabled="{{myForm.next}}" class="md-warn" ng-href="partite.html" id="next">Prosegui</md-button>
+						<span flex></span>
+						<md-button class="md-warn" id="delete" ng-click="myForm.deleteLastPlayer()">Elimina ultimo giocatore inserito</md-button>
 					</div>
 				</form>
 			</md-card>
 			
 			<!-- Lista Giocatori -->
 			<md-content layout="column" flex layout-padding ng-controller="ListsCtrl as myList">
-				
-				{{myList.listPlayer()}}
+				<h4><b>Squadra:</b> {{ myList.squadra.nomeSquadra | capitalizeFirstLetter }} <b>Città:</b> {{ myList.squadra.nomeCitta | capitalizeFirstLetter }}</h4>
 				<md-list>
 					<md-list-item class="md-3-line" ng-repeat="player in myList.listPlayer()">
-						<div class="md-list-item-text" layout="column">
-							<h3>{{ player.Nome | capitalizeFirstLetter }} {{ player.Cognome | capitalizeFirstLetter }}</h3>
-							<h4 hide show-gt-sm>{{ player.Descrizione }}</h4>
-							<p ng-if="ListsCtrl.checkTypeRole(player.Ruolo)" >Esterno</p>
-							<p ng-if="!ListsCtrl.checkTypeRole(player.Ruolo)" >Interno</p>
+						<div class="md-list-item-text" layout="column" style="margin-bottom: 20px;">
+							<h4><b>Nome:</b> {{ player.Nome | capitalizeFirstLetter }} </h4> 
+							<h4><b>Cognome:</b> {{ player.Cognome | capitalizeFirstLetter }} </h4> 
+							<h4 hide show-gt-sm><b>Anno di Nascita:</b> {{ player.AnnoDiNascita }}</h4>
+							<h4 hide show-gt-sm><b>Numero di maglia:</b> {{ player.Maglia }}</h4>
+							<p hide show-gt-sm ng-if="myList.checkUnder20(player.AnnoDiNascita)"> Under 20 </p>
+							<p hide show-gt-sm ng-if="!myList.checkUnder20(player.AnnoDiNascita)"> Non Under 20 </p>
+						    <div> <hr> </div>
 						  </div>
+						
 					</md-list-item>
 				</md-list>
 			</md-content>

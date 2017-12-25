@@ -1,3 +1,5 @@
+
+
 (function() {
     'use strict';
 	angular.module('myApp', ['ngMaterial', 'ui.router', 'ngMessages']); // Registriamo l'applicazione ed includiamo la libreria Material
@@ -5,7 +7,8 @@
 
 	
 	angular.module('myApp').service("$squadService",SquadService);
-	//angular.module('myApp').directive('mgHide',hide)
+    angular.module('myApp').directive("myValidName", myValidName); // Registriamo la direttiva
+
 
 	
 
@@ -68,5 +71,29 @@
 		console.log("vx ->",vx)
 	}
 
+	 myValidName.$inject = [];
+    function myValidName() {
+        return {
+            require: 'ngModel',
+            link: function (scope, elem, attr, ngModel) {
 
+                //For DOM -> model validation
+                ngModel.$parsers.push(function (value) {
+                    var valid = checkValue(value);
+                    ngModel.$setValidity('myvalidname', valid);
+                    return value;
+                });
+
+                //For model -> DOM validation
+                ngModel.$formatters.push(function (value) {
+                    ngModel.$setValidity('myvalidname', checkValue(value));
+                    return value;
+                });
+				
+				function checkValue(value) {
+					return !(/\d/.test(value));
+				}
+            }
+        };
+    };
 })();

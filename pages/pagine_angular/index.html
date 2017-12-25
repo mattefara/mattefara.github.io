@@ -36,11 +36,21 @@
 				<form name="form1" layout="column" flex>
 					<md-input-container>
 						<label>Nome: </label>
-						<input ng-model="form.nomeSquadra" name="Nome" ng-required="true" md-maxlength="30">
+						<input my-valid-name ng-model="form.nomeSquadra" name="Nome" ng-required="true" md-maxlength="30">
+						<div ng-messages="form1.Nome.$error">
+							<div ng-message="required">Campo Obbligatorio</div>
+							<div ng-message="md-maxlength">Nome Troppo Lungo</div>
+							<div ng-message="myvalidname">I caratteri numerici non sono accettati</div>
+						</div>
 					</md-input-container>
 					<md-input-container>
 						<label>Citta:</label>
-						<input ng-model="form.nomeCitta" name="Cognome" ng-required="true" md-maxlength="30">
+						<input my-valid-name ng-model="form.nomeCitta" name="Cognome" ng-required="true" md-maxlength="30">
+						<div ng-messages="form1.Cognome.$error">
+							<div ng-message="required">Campo Obbligatorio</div>
+							<div ng-message="md-maxlength">Nome Troppo Lungo</div>
+							<div ng-message="myvalidname">I caratteri numerici non sono accettati</div>
+						</div>
 					</md-input-container> 
 					
 					<div layout="row">

@@ -1,3 +1,5 @@
+var PlayerCount = 0;
+
 (function() {
     'use strict';
 	angular.module('myApp', ['ngMaterial', 'ngMessages']); // Registriamo l'applicazione ed includiamo la libreria Material
@@ -5,12 +7,13 @@
     angular.module('myApp').controller('FormCtrl', FormCtrl); // Registriamo il controller
     angular.module('myApp').controller('ToolbarCtrl', ToolbarCtrl); // Registriamo il controller
     angular.module('myApp').service('$PlayersSvc', PlayersSvc); // Registriamo il service
+    angular.module('myApp').directive("myValidName", myValidName); // Registriamo la direttiva
 	
 	/* Filtro personalizzato che mostra la prima lettera di una stringa in maiuscolo */
 	angular.module('myApp').filter('capitalizeFirstLetter', capitalizeFirstLetter);
     
 	/* Costante con i default di creazione dell'utente */
-	angular.module('myApp').constant('PLAYER_DEFAULT', { Nome: '', AnnoDiNascita : "", Under20: false, Maglia: "" });
+	angular.module('myApp').constant('PLAYER_DEFAULT', { Nome: '', Cognome: '' , AnnoDiNascita : "", Under20: false, Maglia: "" });
 	
 	/* Controller che gestisce la lista dei giocatori */
 	ListsCtrl.$inject = ['$PlayersSvc'];
@@ -18,9 +21,16 @@
 		var vm = this;
 		
 		vm.listPlayer = $PlayersSvc.getList;
-				
-		// Controllo il tipo di ruolo, se è Playmaker, Guardia e Ala allora è esterno, altrimenti interno.
-	
+		vm.checkUnder20 = checkUnder20;
+		vm.squadra = {
+			nomeCitta: sessionStorage.getItem("nomeCitta"),
+			nomeSquadra: sessionStorage.getItem("nomeSquadra")
+		}
+		
+		function checkUnder20(AnnoDiNascita){
+			var checked = (2017 - parseInt(AnnoDiNascita) < 20) ? true : false
+			return checked;
+		}
 	}
 
 	/* Controller che gestisce la form di inserimento */
@@ -31,6 +41,8 @@
 		/* API Pubbliche */
 		vm.newPlayer = newPlayer;
 		vm.savePlayer = savePlayer;
+		vm.deleteLastPlayer = deleteLastPlayer;
+		vm.next = "true";
 		vm.nomeCitta = sessionStorage.getItem("nomeCitta")
 		vm.nomeSquadra = sessionStorage.getItem("nomeSquadra")
 		
@@ -39,15 +51,20 @@
 		
 		/* Funzione che si occupa di generare il nuovo giocatore */
 		function newPlayer() {
-			console.log("nuovo")
-			vm.Player = $PlayersSvc.initializePlayer(); // Inizializzo il giocatore 
-			console.log(vm)
+			vm.Player = $PlayersSvc.initializePlayer(); // Inizializzo il giocatore
 		}
 	
 		function savePlayer() {
-			console.log("salva")
 			$PlayersSvc.addPlayer(vm.Player);
-			newPlayer();
+			newPlayer(); 
+			PlayerCount ++;
+			vm.next = $PlayersSvc.checkNumberOfPlayer(PlayerCount)
+		}
+
+		
+
+		function deleteLastPlayer(){
+			$PlayersSvc.deletePlayer()
 		}
 	}
 	
@@ -73,6 +90,8 @@
 		this.addPlayer = addPlayer;
 		this.getList = getList;
 		this.clearList = clearList;
+		this.deletePlayer = deletePlayer;
+		this.checkNumberOfPlayer = checkNumberOfPlayer;
 		
 		// Funzione che ritorna la lista dei ruoli disponibili
 		function initializePlayer() {
@@ -96,7 +115,21 @@
 			ListPlayers = [];
 		}
 	
-	
+		function deletePlayer(){
+			ListPlayers.pop();
+			PlayerCount --;
+			checkNumberOfPlayer(PlayerCount)
+		}
+
+		function checkNumberOfPlayer(count){
+			if (count >=1 && count<=2) {
+				angular.element( document.querySelector( '#next' ) ).removeAttr("disabled")
+				return 'false'
+			} else {
+				angular.element( document.querySelector( '#next' ) ).attr("disabled","disabled")
+				return 'true'
+			}
+		}
 	}
 	
 	/* Funzione di filtro, ritorna una funzione con input il valore da filtrare */
