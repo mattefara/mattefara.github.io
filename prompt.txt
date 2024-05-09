@@ -1,4 +1,0 @@
-This is a piece of documentation written by an engineer about an application installed in a Kubernetes cluster.
-Correct the grammar in the text below and add some details, it will be rendered with Docusaurus.
----
-
