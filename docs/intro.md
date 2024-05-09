@@ -2,15 +2,18 @@
 sidebar_position: 1
 ---
 
-# Homelab Intro
-This is my journey about building my homelab. 
-This homelab has the pourpose of me larning new things and experiment with new techonologies.
+# Homelab Introduction
+Welcome to my homelab journey where I delve into building and exploring new technologies.
+
+As an enthusiastic Italian with a deep passion for cloud technologies and Kubernetes, this project serves the purpose of both learning and experimenting with the latest tech innovations.
 
 ## Getting Started
-For now the documentation is written with Docusaurus and I plan of putting this site on Github or Gitlab pages.
+Currently, the documentation is authored using Docusaurus, and my plan is to host this site on either Github or Gitlab pages.
 
 ## Technologies
-Everithing should run on Kubernetes and I plan on keeping everything private, except for some techonologies that involves CI/CD and needs some external access from Gitlab or Github.
-The projects should use the DevOps principles, promoting automation using pipelines or others principles, like GitOps.
+The entire setup is designed to operate within a Kubernetes environment. While most components will remain private, certain technologies, particularly those involving CI/CD, may require external access from platforms such as Gitlab or Github. 
 
-Let's get started!
+The projects are aligned with DevOps principles, emphasizing automation through pipelines and adopting methodologies like GitOps.
+
+Let's embark on this exciting journey together!
+

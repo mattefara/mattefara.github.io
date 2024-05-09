@@ -111,7 +111,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Homelab, Built with Docusaurus.`,
+      copyright: `Homelab, Built with Docusaurus. <a target="_blank" href="https://icons8.com/icon/47832/server">Server</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>`,
     },
     prism: {
       theme: prismThemes.github,
