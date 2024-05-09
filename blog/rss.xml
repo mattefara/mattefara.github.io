@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Homelab journey Blog</title>
+        <link>https://mattefara.github.com/blog/</link>
+        <description>Homelab journey Blog</description>
+        <lastBuildDate>Thu, 22 Feb 2024 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <item>
+            <title><![CDATA[Welcome]]></title>
+            <link>https://mattefara.github.com/blog/welcome/</link>
+            <guid>https://mattefara.github.com/blog/welcome/</guid>
+            <pubDate>Thu, 22 Feb 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[This marks the beginning of my journey through the exploration of new technologies. I'm an Italian guy passionate about technology and eager to explore new things.]]></description>
+            <content:encoded><![CDATA[<p>This marks the beginning of my journey through the exploration of new technologies. I'm an Italian guy passionate about technology and eager to explore new things.</p>
+<p>Whenever I come across something I find interesting, I will try it out and share my thoughts here.</p>
+<p>I hope this project can help me grow both professionally and mentally, allowing me to expand my knowledge.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="why-not-medium">Why not Medium?<a href="https://mattefara.github.com/blog/welcome/#why-not-medium" class="hash-link" aria-label="Direct link to Why not Medium?" title="Direct link to Why not Medium?">​</a></h2>
+<p>I have nothing against Medium or similar sites. However, I prefer to maintain my own site so that I have full control over it. For now, I'm using Github Pages to avoid managing a server, but we'll see what the future holds.</p>
+<p>Having a website can help me better track my achievements and accomplishments while also improving my English skills. Currently, everything is powered by <a href="https://docusaurus.io/" target="_blank" rel="noopener noreferrer">Docusaurus</a>.</p>
+<p>This is my first time doing something like this, and I'm excited!</p>]]></content:encoded>
+            <category>docusaurus</category>
+        </item>
+    </channel>
+</rss>
