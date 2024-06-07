@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkhomelab_blog=self.webpackChunkhomelab_blog||[]).push([[837],{5362:a=>{a.exports=JSON.parse('{"label":"wave","permalink":"/blog/tags/wave","allTagsPath":"/blog/tags","count":1,"unlisted":false}')}}]);
